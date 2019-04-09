@@ -26,8 +26,19 @@ gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
      
 
 #Calculating Ix,Iy,Ixx,Iyy,Ixy
+
 Ix=calculateIx(gray_image)
 Iy=CaculateIy(gray_image)
 Ixx = pow(Ix,2)
 Iyy = pow(Iy,2)
 Ixy = Ix*Iy
+
+
+offset = 2
+k = 0.08
+
+imageHeight, imageWidth = gray_image.shape
+
+
+
+
