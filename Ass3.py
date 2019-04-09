@@ -3,6 +3,8 @@ import numpy as np
 from scipy import signal
 
 
+#Using sobel filter to calculate derivatives 
+
 # Calculating gradient at X direction
 
 
@@ -38,6 +40,27 @@ offset = 2
 k = 0.08
 
 imageHeight, imageWidth = gray_image.shape
+
+#initializing Harris Response Array
+
+HarrisResponse = np.zeros((width - offset, height-offset))
+
+#constructing Harris response array
+
+for y in range(offset, height-offset):
+    for x in range(offset, width - offset):
+        Sxx = float np.sum(Ixx[y-offset:y+1+offset, x-offset:x+1+offset])
+
+        Syy = float np.sum(Iyy[y-offset:y+1+offset, x-offset:x+1+offset])
+
+        Sxy = np.sum(Ixy[y-offset:y+1+offset, x-offset:x+1+offset])
+
+        determinant = (Sxx * Syy) - (Sxy ** 2)
+
+        trace = Sxx + Syy
+
+        HarrisResponse[y][x] = determinant - k * (trace ** 2)
+
 
 
 
